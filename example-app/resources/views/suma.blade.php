@@ -23,5 +23,6 @@
             @endif
         </hgroup>
     </section>
+    
 @endsection
 
