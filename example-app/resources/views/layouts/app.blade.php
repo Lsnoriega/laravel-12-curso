@@ -17,7 +17,7 @@
             
              <h1>Laravel <span style="color: #D93526;">12</span></h1>
              <br>
-             <h3><a href="{{ route('inicio') }}">Inicio</a> | <a href="{{ route('suma') }}">Suma</a></h3>
+             <h3><a href="{{ route('inicio') }}">Inicio</a> | <a href="{{ route('suma') }}">Suma</a> | <a href="/productos">Productos</a></h3>
         
         </hgroup>
     </section>
