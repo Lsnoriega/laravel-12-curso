@@ -1,9 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Lista de Productos</h1>
+    <hgroup>
+        <h1>Lista de Productos</h1>
+        <br>
+        <a href="#" data-target="createModal" onclick="toggleModal(event)" style="align-items: flex-end;">Crear Producto</a>  
+    </hgroup>
+    
 
-    <table>
+    <table style="overflow-x: auto;">
         <thead>
             <tr>
                 <th>Id</th>
@@ -21,15 +26,13 @@
                     <td>{{ $producto->precio }}</td>
                     <td>{{ $producto->descripcion }}</td>
                     <td>
-                        <a href="#" data-target="showModal{{ $producto->id }}" onclick="toggleModal(event)">Ver</a>
-                        <a href="#" data-target="editModal{{ $producto->id }}" onclick="toggleModal(event)">Editar</a>
-                        <form action="{{ route('productos.destroy', $producto->id) }}" method="POST" style="display: inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">Eliminar</button>
-                        </form>
+                        <a href="#" data-target="showModal{{ $producto->id }}" onclick="toggleModal(event)">Ver</a> |
+                        <a href="#" data-target="editModal{{ $producto->id }}" onclick="toggleModal(event)">Editar</a> |
+                        <a href="#" data-target="deleteModal{{ $producto->id }}" onclick="toggleModal(event)">Eliminar</a>                       
                     </td>
                 </tr>
+                
+                
                 <dialog id="showModal{{ $producto->id }}">
                     <article>
                         <a href="#" aria-label="Close" class="close" data-target="showModal{{ $producto->id }}" onclick="toggleModal(event)"></a>
@@ -48,6 +51,8 @@
                         </div>
                     </article>
                 </dialog>
+                
+
                 <dialog id="editModal{{ $producto->id }}">
                     <article>
                         <a href="#" aria-label="Close" class="close" data-target="editModal{{ $producto->id }}" onclick="toggleModal(event)"></a>
@@ -71,10 +76,24 @@
                         </form>
                     </article>
                 </dialog>
+
+                <dialog id="deleteModal{{ $producto->id }}">
+                    <article>
+                    <a href="#" aria-label="Close" class="close" data-target="deleteModal{{ $producto->id }}" onclick="toggleModal(event)"></a>
+                        <h1>Confirmar</h1>
+                        <form action="{{ route('productos.destroy', $producto->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Eliminar</button>
+                        </form> 
+                    </article>
+                </dialog>
             @endforeach
         </tbody>
     </table>
-    <a href="#" data-target="createModal" onclick="toggleModal(event)">Crear Producto</a>
+
+    
+
     <dialog id="createModal">
         <article>
             <a href="#" aria-label="Close" class="close" data-target="createModal" onclick="toggleModal(event)"></a>
@@ -97,6 +116,8 @@
             </form>
         </article>
     </dialog>
+
+    
 @endsection
 
     

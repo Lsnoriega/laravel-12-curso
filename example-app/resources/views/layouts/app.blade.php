@@ -21,9 +21,11 @@
         
         </hgroup>
     </section>
-    
-        @yield('content')
 
+    <section>
+        @yield('content')
+    </section>
+    
     </main>
 </body>
 </html>
@@ -39,6 +41,7 @@
     section {
         display: flex;
         justify-content: center;
+        flex-wrap: wrap;
     }
 
     hgroup {
